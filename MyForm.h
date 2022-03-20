@@ -1,6 +1,7 @@
 #pragma once
 #include "Vizhiner.h"
 #include "ABCModel.h"
+#include "fstream"
 #include <msclr\marshal_cppstd.h>
 
 namespace cryptographyVizhiner {
@@ -68,6 +69,10 @@ namespace cryptographyVizhiner {
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::TextBox^ textBox8;
 	private: System::Windows::Forms::Label^ label10;
+	private: System::Windows::Forms::OpenFileDialog^ openFileDialog1;
+	private: System::Windows::Forms::Button^ button5;
+	private: System::Windows::Forms::Button^ button6;
+	private: System::Windows::Forms::DataGridView^ dataGridView1;
 
 
 
@@ -110,8 +115,13 @@ namespace cryptographyVizhiner {
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
 			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->button5 = (gcnew System::Windows::Forms::Button());
+			this->button6 = (gcnew System::Windows::Forms::Button());
+			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			this->tableLayoutPanel1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// textBox1
@@ -122,6 +132,7 @@ namespace cryptographyVizhiner {
 			this->textBox1->Location = System::Drawing::Point(12, 29);
 			this->textBox1->Multiline = true;
 			this->textBox1->Name = L"textBox1";
+			this->textBox1->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
 			this->textBox1->Size = System::Drawing::Size(349, 196);
 			this->textBox1->TabIndex = 0;
 			this->textBox1->Validating += gcnew System::ComponentModel::CancelEventHandler(this, &MyForm::TextValidate);
@@ -145,6 +156,7 @@ namespace cryptographyVizhiner {
 			this->textBox2->Location = System::Drawing::Point(384, 29);
 			this->textBox2->Multiline = true;
 			this->textBox2->Name = L"textBox2";
+			this->textBox2->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
 			this->textBox2->Size = System::Drawing::Size(349, 196);
 			this->textBox2->TabIndex = 2;
 			this->textBox2->Validating += gcnew System::ComponentModel::CancelEventHandler(this, &MyForm::TextValidate);
@@ -165,9 +177,10 @@ namespace cryptographyVizhiner {
 			this->textBox3->CharacterCasing = System::Windows::Forms::CharacterCasing::Lower;
 			this->textBox3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->textBox3->Location = System::Drawing::Point(12, 267);
+			this->textBox3->Location = System::Drawing::Point(12, 310);
 			this->textBox3->Multiline = true;
 			this->textBox3->Name = L"textBox3";
+			this->textBox3->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
 			this->textBox3->Size = System::Drawing::Size(349, 196);
 			this->textBox3->TabIndex = 4;
 			this->textBox3->Validating += gcnew System::ComponentModel::CancelEventHandler(this, &MyForm::TextValidate);
@@ -177,7 +190,7 @@ namespace cryptographyVizhiner {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label3->Location = System::Drawing::Point(8, 244);
+			this->label3->Location = System::Drawing::Point(8, 287);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(349, 20);
 			this->label3->TabIndex = 5;
@@ -188,7 +201,7 @@ namespace cryptographyVizhiner {
 			this->label4->AutoSize = true;
 			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label4->Location = System::Drawing::Point(380, 244);
+			this->label4->Location = System::Drawing::Point(380, 287);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(368, 20);
 			this->label4->TabIndex = 6;
@@ -200,10 +213,11 @@ namespace cryptographyVizhiner {
 			this->textBox4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->textBox4->ImeMode = System::Windows::Forms::ImeMode::NoControl;
-			this->textBox4->Location = System::Drawing::Point(384, 267);
+			this->textBox4->Location = System::Drawing::Point(384, 310);
 			this->textBox4->Multiline = true;
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->ReadOnly = true;
+			this->textBox4->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
 			this->textBox4->Size = System::Drawing::Size(349, 196);
 			this->textBox4->TabIndex = 7;
 			// 
@@ -299,7 +313,7 @@ namespace cryptographyVizhiner {
 			// 
 			this->textBox6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->textBox6->Location = System::Drawing::Point(12, 500);
+			this->textBox6->Location = System::Drawing::Point(12, 589);
 			this->textBox6->Multiline = true;
 			this->textBox6->Name = L"textBox6";
 			this->textBox6->ReadOnly = true;
@@ -311,7 +325,7 @@ namespace cryptographyVizhiner {
 			this->label8->AutoSize = true;
 			this->label8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label8->Location = System::Drawing::Point(12, 477);
+			this->label8->Location = System::Drawing::Point(12, 566);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(158, 20);
 			this->label8->TabIndex = 18;
@@ -319,7 +333,8 @@ namespace cryptographyVizhiner {
 			// 
 			// chart1
 			// 
-			this->chart1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+			this->chart1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			chartArea1->AxisX->Interval = 1;
 			chartArea1->Name = L"ChartArea1";
@@ -328,10 +343,12 @@ namespace cryptographyVizhiner {
 			this->chart1->Name = L"chart1";
 			this->chart1->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::Berry;
 			series1->ChartArea = L"ChartArea1";
+			series1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
 			series1->Name = L"Series1";
 			series1->XValueType = System::Windows::Forms::DataVisualization::Charting::ChartValueType::String;
 			this->chart1->Series->Add(series1);
-			this->chart1->Size = System::Drawing::Size(352, 207);
+			this->chart1->Size = System::Drawing::Size(474, 224);
 			this->chart1->TabIndex = 16;
 			this->chart1->Text = L"chart1";
 			// 
@@ -341,23 +358,24 @@ namespace cryptographyVizhiner {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->tableLayoutPanel1->ColumnCount = 2;
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				61.72414F)));
+				82.75862F)));
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				38.27586F)));
+				17.24138F)));
 			this->tableLayoutPanel1->Controls->Add(this->chart1, 0, 0);
+			this->tableLayoutPanel1->Controls->Add(this->dataGridView1, 0, 1);
 			this->tableLayoutPanel1->Location = System::Drawing::Point(756, 36);
 			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
 			this->tableLayoutPanel1->RowCount = 2;
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-			this->tableLayoutPanel1->Size = System::Drawing::Size(580, 427);
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 36.05016F)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 63.94984F)));
+			this->tableLayoutPanel1->Size = System::Drawing::Size(580, 638);
 			this->tableLayoutPanel1->TabIndex = 19;
 			// 
 			// textBox7
 			// 
 			this->textBox7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->textBox7->Location = System::Drawing::Point(384, 500);
+			this->textBox7->Location = System::Drawing::Point(384, 589);
 			this->textBox7->Multiline = true;
 			this->textBox7->Name = L"textBox7";
 			this->textBox7->ReadOnly = true;
@@ -369,7 +387,7 @@ namespace cryptographyVizhiner {
 			this->label9->AutoSize = true;
 			this->label9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label9->Location = System::Drawing::Point(384, 477);
+			this->label9->Location = System::Drawing::Point(384, 566);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(160, 20);
 			this->label9->TabIndex = 21;
@@ -379,7 +397,7 @@ namespace cryptographyVizhiner {
 			// 
 			this->textBox8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->textBox8->Location = System::Drawing::Point(12, 629);
+			this->textBox8->Location = System::Drawing::Point(12, 718);
 			this->textBox8->Multiline = true;
 			this->textBox8->Name = L"textBox8";
 			this->textBox8->ReadOnly = true;
@@ -391,17 +409,57 @@ namespace cryptographyVizhiner {
 			this->label10->AutoSize = true;
 			this->label10->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label10->Location = System::Drawing::Point(12, 606);
+			this->label10->Location = System::Drawing::Point(12, 695);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(160, 20);
 			this->label10->TabIndex = 23;
 			this->label10->Text = L"Слова из 3-x букв:";
+			// 
+			// openFileDialog1
+			// 
+			this->openFileDialog1->FileName = L"openFileDialog1";
+			// 
+			// button5
+			// 
+			this->button5->Location = System::Drawing::Point(12, 231);
+			this->button5->Name = L"button5";
+			this->button5->Size = System::Drawing::Size(349, 32);
+			this->button5->TabIndex = 24;
+			this->button5->Text = L"Выбрать файл";
+			this->button5->UseVisualStyleBackColor = true;
+			this->button5->Click += gcnew System::EventHandler(this, &MyForm::button5_Click);
+			// 
+			// button6
+			// 
+			this->button6->Location = System::Drawing::Point(12, 512);
+			this->button6->Name = L"button6";
+			this->button6->Size = System::Drawing::Size(349, 31);
+			this->button6->TabIndex = 25;
+			this->button6->Text = L"Выбрать файл";
+			this->button6->UseVisualStyleBackColor = true;
+			this->button6->Click += gcnew System::EventHandler(this, &MyForm::button6_Click);
+			// 
+			// dataGridView1
+			// 
+			this->dataGridView1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Location = System::Drawing::Point(3, 233);
+			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->ReadOnly = true;
+			this->dataGridView1->RowHeadersWidth = 51;
+			this->dataGridView1->RowTemplate->Height = 24;
+			this->dataGridView1->Size = System::Drawing::Size(474, 402);
+			this->dataGridView1->TabIndex = 17;
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1479, 857);
+			this->Controls->Add(this->button6);
+			this->Controls->Add(this->button5);
 			this->Controls->Add(this->textBox8);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->textBox7);
@@ -431,6 +489,7 @@ namespace cryptographyVizhiner {
 			this->Validating += gcnew System::ComponentModel::CancelEventHandler(this, &MyForm::TextValidate);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->EndInit();
 			this->tableLayoutPanel1->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -498,21 +557,22 @@ private:
 		}
 
 		set<string> words = originalModel->GetwordsFromOneLetters();
-		DisplayWors(words, this->textBox6);
+		DisplayWords(words, this->textBox6);
 
 		words = originalModel->GetwordsFromTwoLetters();
-		DisplayWors(words, this->textBox7);
+		DisplayWords(words, this->textBox7);
 
 		words = originalModel->GetwordsFromThreeLetters();
-		DisplayWors(words, this->textBox8);
+		DisplayWords(words, this->textBox8);
 
 	}
 
-	void DisplayWors(set<string> words, System::Windows::Forms::TextBox^ textBox) {
+	template <class T>
+	void DisplayWords(T words, System::Windows::Forms::TextBox^ textBox) {
 		System::String^ word;
 		string wordBuffer;
 ;
-		set<string>::iterator itr;
+		T::iterator itr;
 
 		for (itr = words.begin(); itr != words.end(); itr++) {
 			wordBuffer = *itr;
@@ -521,6 +581,43 @@ private:
 		}
 
 		textBox->Text = word;
+	}
+
+	System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) { // Открытие файла "исходный текст"
+		if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::Cancel) { return; }
+
+		string filename = msclr::interop::marshal_as<std::string>(openFileDialog1->FileName);
+
+		vector<string> lines = ReadFile_(filename);
+
+		DisplayWords(lines, this->textBox1);
+	}
+
+	System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::Cancel) { return; }
+
+		string filename = msclr::interop::marshal_as<std::string>(openFileDialog1->FileName);
+
+		vector<string> lines = ReadFile_(filename);
+
+		DisplayWords(lines, this->textBox3);
+	}
+
+	vector<string> ReadFile_(string filename) {
+		ifstream file;
+		file.open(filename);
+
+		vector<string> lines;
+
+		string line;
+		while (getline(file, line))
+		{
+			lines.push_back(line);
+		}
+
+		file.close();
+
+		return lines;
 	}
 };
 }

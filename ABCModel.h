@@ -29,6 +29,6 @@ public:
 	void Analyse(string text);
 	void CollectLettersWords(string text);
 	void AddLettersWord(string word);
-	void reset();
+	void Reset();
 };
 

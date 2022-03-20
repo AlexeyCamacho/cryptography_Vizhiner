@@ -3,7 +3,7 @@
 ABCModel::ABCModel(const char ABC[]) {
 	this->ABC.assign(ABC, ABC + 33);
 
-	for (int i = 0; i < this->ABC.size(); i++)
+	for (unsigned int i = 0; i < this->ABC.size(); i++)
 	{
 		distribution[ABC[i]] = 0;
 	}
@@ -30,7 +30,7 @@ set<string> ABCModel::GetwordsFromThreeLetters()
 
 void ABCModel::Analyse(string text)
 {
-	reset();
+	Reset();
 	CalculateDistribution(text);
 	CollectLettersWords(text);
 }
@@ -38,12 +38,12 @@ void ABCModel::Analyse(string text)
 void ABCModel::CalculateDistribution(string& text) {
 	vector<int> countChar(33, 0);
 
-	for (int i = 0; i < text.length(); i++) {
+	for (unsigned int i = 0; i < text.length(); i++) {
 		vector<char>::iterator itr = find(ABC.begin(), ABC.end(), text[i]);
 		countChar[distance(ABC.begin(), itr)]++;
 	}
 
-	for (int i = 0; i < this->ABC.size(); i++)
+	for (unsigned int i = 0; i < this->ABC.size(); i++)
 	{
 		distribution[ABC[i]] = (double)countChar[i] / (double)text.length();
 	}
@@ -53,7 +53,7 @@ void ABCModel::CollectLettersWords(string text)
 {
 	string word;
 	bool isWord = false;
-	for (int i = 0; i < text.length(); i++) {
+	for (unsigned int i = 0; i < text.length(); i++) {
 		if (text[i] == ' ') {
 			if (isWord) {
 				AddLettersWord(word);
@@ -88,7 +88,7 @@ void ABCModel::AddLettersWord(string word)
 	}
 }
 
-void ABCModel::reset()
+void ABCModel::Reset()
 {
 	this->distribution.clear();
 	this->wordsFromOneLetter.clear();
