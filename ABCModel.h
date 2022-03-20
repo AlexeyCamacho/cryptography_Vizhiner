@@ -12,6 +12,7 @@ class ABCModel
 private:
 	vector<char> ABC;
 	map<char, double> distribution; // Распределние символов
+	vector<vector<int>> bigrams;
 	set<string> wordsFromOneLetter;
 	set<string> wordsFromTwoLetter;
 	set<string> wordsFromThreeLetter;
@@ -19,6 +20,9 @@ private:
 public:
 	ABCModel(const char ABC[]);
 
+	vector<char> GetABC();
+	char GetCharABC(unsigned int i);
+	vector<vector<int>> GetBigrams();
 	map<char, double> GetDistribution();
 	set<string> GetwordsFromOneLetters();
 	set<string> GetwordsFromTwoLetters();
@@ -26,6 +30,7 @@ public:
 
 
 	void CalculateDistribution(string& text);
+	void CalculateBigrams(string& text);
 	void Analyse(string text);
 	void CollectLettersWords(string text);
 	void AddLettersWord(string word);

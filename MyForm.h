@@ -14,8 +14,10 @@ namespace cryptographyVizhiner {
 	using namespace System::Drawing;
 	using namespace System::Windows::Forms::DataVisualization::Charting;
 
+	const int SIZE_ABC = 33;
 
-	const char ABC[33] = { 'а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н',
+
+	const char ABC[SIZE_ABC] = { 'а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н',
 		'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', ' ' };
 
 	Vizhiner* encryptor = new Vizhiner(ABC);
@@ -111,6 +113,7 @@ namespace cryptographyVizhiner {
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
@@ -118,7 +121,6 @@ namespace cryptographyVizhiner {
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->button6 = (gcnew System::Windows::Forms::Button());
-			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			this->tableLayoutPanel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -348,7 +350,7 @@ namespace cryptographyVizhiner {
 			series1->Name = L"Series1";
 			series1->XValueType = System::Windows::Forms::DataVisualization::Charting::ChartValueType::String;
 			this->chart1->Series->Add(series1);
-			this->chart1->Size = System::Drawing::Size(474, 224);
+			this->chart1->Size = System::Drawing::Size(574, 265);
 			this->chart1->TabIndex = 16;
 			this->chart1->Text = L"chart1";
 			// 
@@ -356,20 +358,37 @@ namespace cryptographyVizhiner {
 			// 
 			this->tableLayoutPanel1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->tableLayoutPanel1->ColumnCount = 2;
+			this->tableLayoutPanel1->ColumnCount = 1;
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
 				82.75862F)));
-			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				17.24138F)));
 			this->tableLayoutPanel1->Controls->Add(this->chart1, 0, 0);
 			this->tableLayoutPanel1->Controls->Add(this->dataGridView1, 0, 1);
 			this->tableLayoutPanel1->Location = System::Drawing::Point(756, 36);
 			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
 			this->tableLayoutPanel1->RowCount = 2;
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 36.05016F)));
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 63.94984F)));
-			this->tableLayoutPanel1->Size = System::Drawing::Size(580, 638);
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 35.33246F)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 64.66753F)));
+			this->tableLayoutPanel1->Size = System::Drawing::Size(580, 767);
 			this->tableLayoutPanel1->TabIndex = 19;
+			// 
+			// dataGridView1
+			// 
+			this->dataGridView1->AllowUserToAddRows = false;
+			this->dataGridView1->AllowUserToDeleteRows = false;
+			this->dataGridView1->AllowUserToResizeColumns = false;
+			this->dataGridView1->AllowUserToResizeRows = false;
+			this->dataGridView1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->dataGridView1->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
+			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Location = System::Drawing::Point(3, 274);
+			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->ReadOnly = true;
+			this->dataGridView1->RowHeadersWidth = 51;
+			this->dataGridView1->RowTemplate->Height = 24;
+			this->dataGridView1->Size = System::Drawing::Size(574, 490);
+			this->dataGridView1->TabIndex = 17;
 			// 
 			// textBox7
 			// 
@@ -439,20 +458,6 @@ namespace cryptographyVizhiner {
 			this->button6->UseVisualStyleBackColor = true;
 			this->button6->Click += gcnew System::EventHandler(this, &MyForm::button6_Click);
 			// 
-			// dataGridView1
-			// 
-			this->dataGridView1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(3, 233);
-			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->ReadOnly = true;
-			this->dataGridView1->RowHeadersWidth = 51;
-			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(474, 402);
-			this->dataGridView1->TabIndex = 17;
-			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -497,7 +502,7 @@ namespace cryptographyVizhiner {
 #pragma endregion
 
 private: 
-	System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) { //Зашифровать
+	System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) { // Зашифровать
 		this->label7->ResetText();
 		if (this->textBox5->TextLength <= 0) {
 			this->label7->Text = "Введите ключ";
@@ -533,7 +538,7 @@ private:
 		).c_str());
 	}
 
-	System::Void TextValidate(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
+	System::Void TextValidate(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) { // Валидация
 		TextBox^ textbox = safe_cast<TextBox^>(sender);
 		textbox->Text = System::Text::RegularExpressions::Regex::Replace(textbox->Text, "[^а-я ]", "");
 	}
@@ -556,6 +561,22 @@ private:
 			chart1->Series[0]->Points->AddXY(x, itr->second);
 		}
 
+		vector<vector<int>> bigrams = originalModel->GetBigrams();
+
+		this->dataGridView1->ColumnCount = SIZE_ABC;
+		this->dataGridView1->RowCount = SIZE_ABC;
+
+		for (int i = 0; i < SIZE_ABC; i++) {
+			this->dataGridView1->Columns[i]->HeaderText = gcnew System::String(string{ originalModel->GetCharABC(i) }.c_str());
+			this->dataGridView1->Rows[i]->HeaderCell->Value = gcnew System::String(string{ originalModel->GetCharABC(i) }.c_str());
+		}
+
+		for (unsigned int i = 0; i < bigrams.size(); i++) {
+			for (unsigned j = 0; j < bigrams[i].size(); j++) {
+				this->dataGridView1->Rows[i]->Cells[j]->Value = bigrams[i][j];
+			}
+		}
+
 		set<string> words = originalModel->GetwordsFromOneLetters();
 		DisplayWords(words, this->textBox6);
 
@@ -568,7 +589,7 @@ private:
 	}
 
 	template <class T>
-	void DisplayWords(T words, System::Windows::Forms::TextBox^ textBox) {
+	void DisplayWords(T words, System::Windows::Forms::TextBox^ textBox) { // Добавление слов в textBox
 		System::String^ word;
 		string wordBuffer;
 ;
@@ -593,7 +614,7 @@ private:
 		DisplayWords(lines, this->textBox1);
 	}
 
-	System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
+	System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) { // Открытие файла "пример текста"
 		if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::Cancel) { return; }
 
 		string filename = msclr::interop::marshal_as<std::string>(openFileDialog1->FileName);
@@ -603,7 +624,7 @@ private:
 		DisplayWords(lines, this->textBox3);
 	}
 
-	vector<string> ReadFile_(string filename) {
+	vector<string> ReadFile_(string filename) { // Чтение файла
 		ifstream file;
 		file.open(filename);
 

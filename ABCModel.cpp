@@ -7,6 +7,10 @@ ABCModel::ABCModel(const char ABC[]) {
 	{
 		distribution[ABC[i]] = 0;
 	}
+
+	for (unsigned int i = 0; i < this->ABC.size(); i++) {
+		bigrams.push_back(vector<int>(33, 0));
+	}
 }
 
 map<char, double> ABCModel::GetDistribution() {
@@ -28,11 +32,29 @@ set<string> ABCModel::GetwordsFromThreeLetters()
 	return this->wordsFromThreeLetter;
 }
 
+vector<char> ABCModel::GetABC()
+{
+	return this->ABC;
+}
+
+vector<vector<int>> ABCModel::GetBigrams() {
+	return this->bigrams;
+}
+
+char ABCModel::GetCharABC(unsigned int i)
+{
+	if (i >= 0 && i < ABC.size()) {
+		return this->ABC[i];
+	}
+	else { return '0'; }
+}
+
 void ABCModel::Analyse(string text)
 {
 	Reset();
 	CalculateDistribution(text);
 	CollectLettersWords(text);
+	CalculateBigrams(text);
 }
 
 void ABCModel::CalculateDistribution(string& text) {
@@ -46,6 +68,17 @@ void ABCModel::CalculateDistribution(string& text) {
 	for (unsigned int i = 0; i < this->ABC.size(); i++)
 	{
 		distribution[ABC[i]] = (double)countChar[i] / (double)text.length();
+	}
+}
+
+void ABCModel::CalculateBigrams(string& text)
+{
+	vector<char>::iterator itrI;
+	vector<char>::iterator itrJ;
+	for (unsigned int i = 0; i < text.length() - 1; i++) {
+		itrI = find(ABC.begin(), ABC.end(), text[i]);
+		itrJ = find(ABC.begin(), ABC.end(), text[i + 1]);
+		bigrams[distance(ABC.begin(), itrI)][distance(ABC.begin(), itrJ)]++;
 	}
 }
 
@@ -94,4 +127,5 @@ void ABCModel::Reset()
 	this->wordsFromOneLetter.clear();
 	this->wordsFromThreeLetter.clear();
 	this->wordsFromTwoLetter.clear();
+	this->bigrams.clear();
 }
