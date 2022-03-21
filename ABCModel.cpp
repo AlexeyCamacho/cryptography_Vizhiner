@@ -55,6 +55,12 @@ void ABCModel::Analyse(string text)
 	CalculateDistribution(text);
 	CollectLettersWords(text);
 	CalculateBigrams(text);
+	CalculateIndexOfMatches();
+}
+
+double ABCModel::GetIndexOfMathes()
+{
+	return this->indexOfMatches;
 }
 
 void ABCModel::CalculateDistribution(string& text) {
@@ -127,5 +133,20 @@ void ABCModel::Reset()
 	this->wordsFromOneLetter.clear();
 	this->wordsFromThreeLetter.clear();
 	this->wordsFromTwoLetter.clear();
-	this->bigrams.clear();
+	
+	for (unsigned int i = 0; i < bigrams.size(); i++) {
+		fill(bigrams[i].begin(), bigrams[i].end(), 0);
+	}
+}
+
+void ABCModel::CalculateIndexOfMatches()
+{
+	double summ = 0;
+
+	map<char, double>::iterator itr;
+	for (itr = distribution.begin(); itr != distribution.end(); itr++) {
+		summ += (itr->second * itr->second);
+	}
+
+	this->indexOfMatches = summ;
 }

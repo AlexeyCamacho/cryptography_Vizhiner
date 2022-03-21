@@ -75,6 +75,11 @@ namespace cryptographyVizhiner {
 	private: System::Windows::Forms::Button^ button5;
 	private: System::Windows::Forms::Button^ button6;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::TabControl^ tabControl1;
+	private: System::Windows::Forms::TabPage^ tabPage1;
+	private: System::Windows::Forms::TabPage^ tabPage2;
+	private: System::Windows::Forms::Label^ label12;
+	private: System::Windows::Forms::Label^ label11;
 
 
 
@@ -121,9 +126,17 @@ namespace cryptographyVizhiner {
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->button6 = (gcnew System::Windows::Forms::Button());
+			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
+			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
+			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
+			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->label12 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			this->tableLayoutPanel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			this->tabControl1->SuspendLayout();
+			this->tabPage1->SuspendLayout();
+			this->tabPage2->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// textBox1
@@ -201,11 +214,11 @@ namespace cryptographyVizhiner {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label4->Location = System::Drawing::Point(380, 287);
+			this->label4->Location = System::Drawing::Point(382, 287);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(368, 20);
+			this->label4->Size = System::Drawing::Size(301, 18);
 			this->label4->TabIndex = 6;
 			this->label4->Text = L"Расшифрованный/дешифрованный текст:";
 			// 
@@ -266,6 +279,7 @@ namespace cryptographyVizhiner {
 			this->button2->TabIndex = 11;
 			this->button2->Text = L"Дешифровать";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
 			// button3
 			// 
@@ -361,9 +375,9 @@ namespace cryptographyVizhiner {
 			this->tableLayoutPanel1->ColumnCount = 1;
 			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
 				82.75862F)));
-			this->tableLayoutPanel1->Controls->Add(this->chart1, 0, 0);
 			this->tableLayoutPanel1->Controls->Add(this->dataGridView1, 0, 1);
-			this->tableLayoutPanel1->Location = System::Drawing::Point(756, 36);
+			this->tableLayoutPanel1->Controls->Add(this->chart1, 0, 0);
+			this->tableLayoutPanel1->Location = System::Drawing::Point(3, 3);
 			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
 			this->tableLayoutPanel1->RowCount = 2;
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 35.33246F)));
@@ -458,18 +472,70 @@ namespace cryptographyVizhiner {
 			this->button6->UseVisualStyleBackColor = true;
 			this->button6->Click += gcnew System::EventHandler(this, &MyForm::button6_Click);
 			// 
+			// tabControl1
+			// 
+			this->tabControl1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->tabControl1->Controls->Add(this->tabPage1);
+			this->tabControl1->Controls->Add(this->tabPage2);
+			this->tabControl1->Location = System::Drawing::Point(747, 29);
+			this->tabControl1->Name = L"tabControl1";
+			this->tabControl1->SelectedIndex = 0;
+			this->tabControl1->Size = System::Drawing::Size(589, 799);
+			this->tabControl1->TabIndex = 26;
+			// 
+			// tabPage1
+			// 
+			this->tabPage1->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->tabPage1->Controls->Add(this->tableLayoutPanel1);
+			this->tabPage1->Location = System::Drawing::Point(4, 25);
+			this->tabPage1->Name = L"tabPage1";
+			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage1->Size = System::Drawing::Size(581, 770);
+			this->tabPage1->TabIndex = 0;
+			this->tabPage1->Text = L"Анализ";
+			// 
+			// tabPage2
+			// 
+			this->tabPage2->BackColor = System::Drawing::SystemColors::Control;
+			this->tabPage2->Controls->Add(this->label12);
+			this->tabPage2->Controls->Add(this->label11);
+			this->tabPage2->Location = System::Drawing::Point(4, 25);
+			this->tabPage2->Name = L"tabPage2";
+			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage2->Size = System::Drawing::Size(581, 770);
+			this->tabPage2->TabIndex = 1;
+			this->tabPage2->Text = L"Дешифрование";
+			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Location = System::Drawing::Point(6, 3);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(217, 16);
+			this->label11->TabIndex = 0;
+			this->label11->Text = L"Индекса совпадения исходного:";
+			// 
+			// label12
+			// 
+			this->label12->AutoSize = true;
+			this->label12->Location = System::Drawing::Point(229, 3);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(0, 16);
+			this->label12->TabIndex = 1;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1479, 857);
+			this->Controls->Add(this->tabControl1);
 			this->Controls->Add(this->button6);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->textBox8);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->textBox7);
 			this->Controls->Add(this->label9);
-			this->Controls->Add(this->tableLayoutPanel1);
 			this->Controls->Add(this->textBox6);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label7);
@@ -495,6 +561,10 @@ namespace cryptographyVizhiner {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->EndInit();
 			this->tableLayoutPanel1->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			this->tabControl1->ResumeLayout(false);
+			this->tabPage1->ResumeLayout(false);
+			this->tabPage2->ResumeLayout(false);
+			this->tabPage2->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -639,6 +709,11 @@ private:
 		file.close();
 
 		return lines;
+	}
+
+	System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) { // Дешифрование
+		this->label12->ResetText();
+		this->label12->Text = gcnew System::String(originalModel->GetIndexOfMathes().ToString());
 	}
 };
 }
