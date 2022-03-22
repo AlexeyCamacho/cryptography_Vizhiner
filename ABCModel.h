@@ -11,15 +11,18 @@ class ABCModel
 {
 private:
 	vector<char> ABC;
-	map<char, double> distribution; // Распределние символов
 	vector<vector<int>> bigrams; // Биграммы
 	set<string> wordsFromOneLetter;
 	set<string> wordsFromTwoLetter;
 	set<string> wordsFromThreeLetter;
 	double indexOfMatches; // Индекс совпадений
 
+protected:
+	map<char, double> distribution; // Распределние символов
+
 public:
 	ABCModel(const char ABC[]); // Конструктор
+	~ABCModel() { }; 
 
 	// Getters
 
