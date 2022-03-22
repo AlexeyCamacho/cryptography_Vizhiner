@@ -5,11 +5,24 @@ ABCModel::ABCModel(const char ABC[]) {
 
 	for (unsigned int i = 0; i < this->ABC.size(); i++)
 	{
-		distribution[ABC[i]] = 0;
+		this->distribution[ABC[i]] = 0;
 	}
 
 	for (unsigned int i = 0; i < this->ABC.size(); i++) {
-		bigrams.push_back(vector<int>(33, 0));
+		this->bigrams.push_back(vector<int>(33, 0));
+	}
+}
+
+ABCModel::ABCModel(vector<char> ABC) {
+	this->ABC = ABC;
+
+	for (unsigned int i = 0; i < this->ABC.size(); i++)
+	{
+		this->distribution[ABC[i]] = 0;
+	}
+
+	for (unsigned int i = 0; i < this->ABC.size(); i++) {
+		this->bigrams.push_back(vector<int>(33, 0));
 	}
 }
 

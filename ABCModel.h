@@ -18,10 +18,11 @@ private:
 	double indexOfMatches; // Индекс совпадений
 
 protected:
-	map<char, double> distribution; // Распределние символов
+	map<char, double> distribution; // Распределние символов | Неудачный вариант решения. Лучше использовать вектор
 
 public:
 	ABCModel(const char ABC[]); // Конструктор
+	ABCModel(vector<char> ABC); // Конструктор
 	~ABCModel() { }; 
 
 	// Getters
@@ -35,6 +36,7 @@ public:
 	set<string> GetwordsFromThreeLetters();
 	double GetIndexOfMathes();
 
+	// Анализ
 
 	void CalculateDistribution(string& text);
 	void CalculateBigrams(string& text);

@@ -7,6 +7,13 @@ private:
     vector<double> indexesOfMatches; // Индексы совпадений
 
 public:
-    void CalculateIndexes();
+    DecryptionVizhiner(const char ABC[]); // Конструктор
+
+    void CalculateIndexes(string &text);
+    void ResetDecriptor();
+
+    //Getters
+
+    vector<double> GetIndexesOfMatches();
 };
 
