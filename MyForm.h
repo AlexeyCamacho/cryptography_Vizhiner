@@ -25,6 +25,8 @@ namespace cryptographyVizhiner {
 	ABCModel* originalModel = new ABCModel(ABC);
 	DecryptionVizhiner* decriptor = new DecryptionVizhiner(ABC);
 
+	vector<ABCModel*> separationEncrypt;
+
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
@@ -862,6 +864,30 @@ private:
 		}
 
 		this->label14->Text = keyLength.ToString();
+
+		string encryptionText = msclr::interop::marshal_as<std::string>(this->textBox2->Text);
+
+		for (unsigned int i = 0; i < separationEncrypt.size(); i++) {
+			delete separationEncrypt[i];
+		}
+
+		separationEncrypt.clear();
+
+		for (unsigned int i = 1; i <= keyLength; i++) {
+
+			string text;
+			separationEncrypt.push_back(new ABCModel(ABC));
+			for (unsigned int j = 0; j < encryptionText.length(); j += i) {
+				text += encryptionText[j];
+			}
+
+			separationEncrypt[i-1]->CalculateDistribution(text);
+
+		}
+
+		for (unsigned int i = 0; i < separationEncrypt.size(); i++) {
+			
+		}
 
 	}
 

@@ -163,3 +163,17 @@ void ABCModel::CalculateIndexOfMatches()
 
 	this->indexOfMatches = summ;
 }
+
+int ABCModel::CalculateShift(map<char, double> modifiedDistribution)
+{
+	for (unsigned int i = 0; i < modifiedDistribution.size(); i++) {
+		if (this->CheckShift(modifiedDistribution, i)) {
+			return i;
+		}
+	}
+}
+
+bool ABCModel::CheckShift(map<char, double> modifiedDistribution, unsigned int shift)
+{
+	return false;
+}

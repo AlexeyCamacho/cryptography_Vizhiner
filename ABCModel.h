@@ -44,6 +44,9 @@ public:
 	void CollectLettersWords(string text);
 	void AddLettersWord(string word);
 	void CalculateIndexOfMatches();
+	int CalculateShift(map<char, double> modifiedDistribution);
+	bool CheckShift(map<char, double> modifiedDistribution, unsigned int shift);
+
 	void Reset();
 };
 
