@@ -90,6 +90,8 @@ namespace cryptographyVizhiner {
 	private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart2;
 	private: System::Windows::Forms::Label^ label14;
 	private: System::Windows::Forms::Label^ label13;
+	private: System::Windows::Forms::Label^ label16;
+	private: System::Windows::Forms::Label^ label15;
 
 
 
@@ -148,6 +150,8 @@ namespace cryptographyVizhiner {
 			this->chart2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->label15 = (gcnew System::Windows::Forms::Label());
+			this->label16 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			this->tableLayoutPanel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -546,6 +550,8 @@ namespace cryptographyVizhiner {
 			// tabPage2
 			// 
 			this->tabPage2->BackColor = System::Drawing::SystemColors::Control;
+			this->tabPage2->Controls->Add(this->label16);
+			this->tabPage2->Controls->Add(this->label15);
 			this->tabPage2->Controls->Add(this->label14);
 			this->tabPage2->Controls->Add(this->label13);
 			this->tabPage2->Controls->Add(this->chart2);
@@ -626,6 +632,23 @@ namespace cryptographyVizhiner {
 			this->label11->Size = System::Drawing::Size(111, 13);
 			this->label11->TabIndex = 0;
 			this->label11->Text = L"Индекс совпадения:";
+			// 
+			// label15
+			// 
+			this->label15->AutoSize = true;
+			this->label15->Location = System::Drawing::Point(7, 159);
+			this->label15->Name = L"label15";
+			this->label15->Size = System::Drawing::Size(127, 13);
+			this->label15->TabIndex = 31;
+			this->label15->Text = L"Предполагаемый ключ:";
+			// 
+			// label16
+			// 
+			this->label16->AutoSize = true;
+			this->label16->Location = System::Drawing::Point(140, 159);
+			this->label16->Name = L"label16";
+			this->label16->Size = System::Drawing::Size(0, 13);
+			this->label16->TabIndex = 32;
 			// 
 			// MyForm
 			// 
@@ -873,21 +896,26 @@ private:
 
 		separationEncrypt.clear();
 
-		for (unsigned int i = 1; i <= keyLength; i++) {
+		for (unsigned int i = 0; i < keyLength; i++) {
 
 			string text;
 			separationEncrypt.push_back(new ABCModel(ABC));
-			for (unsigned int j = 0; j < encryptionText.length(); j += i) {
+			for (unsigned int j = i; j < encryptionText.length(); j += keyLength) {
 				text += encryptionText[j];
 			}
 
-			separationEncrypt[i-1]->CalculateDistribution(text);
+			separationEncrypt[i]->CalculateDistribution(text);
 
 		}
+
+		string key;
 
 		for (unsigned int i = 0; i < separationEncrypt.size(); i++) {
-			
+			unsigned int shift = originalModel->CalculateShift(separationEncrypt[i]->GetDistribution());
+			key += originalModel->GetCharABC(shift);
 		}
+
+		this->label16->Text = gcnew System::String(key.c_str());
 
 	}
 

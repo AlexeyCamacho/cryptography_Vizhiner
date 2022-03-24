@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include <set>
+#include <cmath>
 
 using namespace std;
 
@@ -45,7 +46,7 @@ public:
 	void AddLettersWord(string word);
 	void CalculateIndexOfMatches();
 	int CalculateShift(map<char, double> modifiedDistribution);
-	bool CheckShift(map<char, double> modifiedDistribution, unsigned int shift);
+	int CheckShift(map<char, double> modifiedDistribution, unsigned int shift);
 
 	void Reset();
 };

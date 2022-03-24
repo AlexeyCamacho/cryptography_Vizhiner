@@ -166,14 +166,47 @@ void ABCModel::CalculateIndexOfMatches()
 
 int ABCModel::CalculateShift(map<char, double> modifiedDistribution)
 {
+	int result = -1;
+	int errors = modifiedDistribution.size();
 	for (unsigned int i = 0; i < modifiedDistribution.size(); i++) {
-		if (this->CheckShift(modifiedDistribution, i)) {
-			return i;
+		int x = this->CheckShift(modifiedDistribution, i);
+		if (x < errors) {
+			result = i;
+			errors = x;
 		}
 	}
+	return result;
 }
 
-bool ABCModel::CheckShift(map<char, double> modifiedDistribution, unsigned int shift)
+int ABCModel::CheckShift(map<char, double> modifiedDistribution, unsigned int shift)
 {
-	return false;
+	vector<double> distributionV;
+	vector<double> modifiedDistributionV;
+
+	int errors = 0;
+
+	//  остыль дл€ копировани€, поскольку был выбран не правильный тип хранени€ данных.
+	// Ћучше использовать вектора
+
+	map<char, double>::iterator itr; 
+	for (itr = this->distribution.begin(); itr != this->distribution.end(); itr++) {
+		distributionV.push_back(itr->second);
+		modifiedDistributionV.push_back(modifiedDistribution[itr->first]);
+	}
+
+	for (unsigned int i = 0; i < distributionV.size(); i++) {
+		double errorRate = distributionV[i] * 0.15;
+
+		int x = i + shift;
+		//if (x < 0) { x += ABC.size(); }
+
+		double y = abs(distributionV[i] - modifiedDistributionV[x % ABC.size()]);
+
+		if (abs(distributionV[i] - modifiedDistributionV[x % ABC.size()]) > errorRate) {
+			errors++;
+		}
+
+	}
+
+	return errors;
 }
