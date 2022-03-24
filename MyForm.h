@@ -145,13 +145,13 @@ namespace cryptographyVizhiner {
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
 			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
+			this->label16 = (gcnew System::Windows::Forms::Label());
+			this->label15 = (gcnew System::Windows::Forms::Label());
 			this->label14 = (gcnew System::Windows::Forms::Label());
 			this->label13 = (gcnew System::Windows::Forms::Label());
 			this->chart2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->label11 = (gcnew System::Windows::Forms::Label());
-			this->label15 = (gcnew System::Windows::Forms::Label());
-			this->label16 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			this->tableLayoutPanel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -565,22 +565,47 @@ namespace cryptographyVizhiner {
 			this->tabPage2->TabIndex = 1;
 			this->tabPage2->Text = L"Дешифрование";
 			// 
+			// label16
+			// 
+			this->label16->AutoSize = true;
+			this->label16->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label16->Location = System::Drawing::Point(170, 158);
+			this->label16->Name = L"label16";
+			this->label16->Size = System::Drawing::Size(0, 16);
+			this->label16->TabIndex = 32;
+			// 
+			// label15
+			// 
+			this->label15->AutoSize = true;
+			this->label15->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label15->Location = System::Drawing::Point(4, 158);
+			this->label15->Name = L"label15";
+			this->label15->Size = System::Drawing::Size(160, 16);
+			this->label15->TabIndex = 31;
+			this->label15->Text = L"Предполагаемый ключ:";
+			// 
 			// label14
 			// 
 			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(172, 142);
+			this->label14->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label14->Location = System::Drawing::Point(217, 142);
 			this->label14->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label14->Name = L"label14";
-			this->label14->Size = System::Drawing::Size(0, 13);
+			this->label14->Size = System::Drawing::Size(0, 16);
 			this->label14->TabIndex = 30;
 			// 
 			// label13
 			// 
 			this->label13->AutoSize = true;
+			this->label13->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
 			this->label13->Location = System::Drawing::Point(4, 142);
 			this->label13->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label13->Name = L"label13";
-			this->label13->Size = System::Drawing::Size(164, 13);
+			this->label13->Size = System::Drawing::Size(209, 16);
 			this->label13->TabIndex = 29;
 			this->label13->Text = L"Предполагаемая длина ключа:";
 			// 
@@ -617,38 +642,25 @@ namespace cryptographyVizhiner {
 			// label12
 			// 
 			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(110, 4);
+			this->label12->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label12->Location = System::Drawing::Point(150, 4);
 			this->label12->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label12->Name = L"label12";
-			this->label12->Size = System::Drawing::Size(0, 13);
+			this->label12->Size = System::Drawing::Size(0, 16);
 			this->label12->TabIndex = 1;
 			// 
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(2, 4);
+			this->label11->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label11->Location = System::Drawing::Point(7, 2);
 			this->label11->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(111, 13);
+			this->label11->Size = System::Drawing::Size(139, 16);
 			this->label11->TabIndex = 0;
 			this->label11->Text = L"Индекс совпадения:";
-			// 
-			// label15
-			// 
-			this->label15->AutoSize = true;
-			this->label15->Location = System::Drawing::Point(7, 159);
-			this->label15->Name = L"label15";
-			this->label15->Size = System::Drawing::Size(127, 13);
-			this->label15->TabIndex = 31;
-			this->label15->Text = L"Предполагаемый ключ:";
-			// 
-			// label16
-			// 
-			this->label16->AutoSize = true;
-			this->label16->Location = System::Drawing::Point(140, 159);
-			this->label16->Name = L"label16";
-			this->label16->Size = System::Drawing::Size(0, 13);
-			this->label16->TabIndex = 32;
 			// 
 			// MyForm
 			// 
@@ -916,6 +928,10 @@ private:
 		}
 
 		this->label16->Text = gcnew System::String(key.c_str());
+
+		this->textBox4->Text = gcnew System::String(encryptor->decrypt(
+			msclr::interop::marshal_as<std::string>(this->textBox2->Text),
+			key).c_str());
 
 	}
 

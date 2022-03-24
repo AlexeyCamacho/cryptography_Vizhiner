@@ -196,11 +196,7 @@ int ABCModel::CheckShift(map<char, double> modifiedDistribution, unsigned int sh
 
 	for (unsigned int i = 0; i < distributionV.size(); i++) {
 		double errorRate = distributionV[i] * 0.15;
-
 		int x = i + shift;
-		//if (x < 0) { x += ABC.size(); }
-
-		double y = abs(distributionV[i] - modifiedDistributionV[x % ABC.size()]);
 
 		if (abs(distributionV[i] - modifiedDistributionV[x % ABC.size()]) > errorRate) {
 			errors++;
