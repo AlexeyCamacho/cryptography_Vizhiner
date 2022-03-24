@@ -5,11 +5,24 @@ ABCModel::ABCModel(const char ABC[]) {
 
 	for (unsigned int i = 0; i < this->ABC.size(); i++)
 	{
-		distribution[ABC[i]] = 0;
+		this->distribution[ABC[i]] = 0;
 	}
 
 	for (unsigned int i = 0; i < this->ABC.size(); i++) {
-		bigrams.push_back(vector<int>(33, 0));
+		this->bigrams.push_back(vector<int>(33, 0));
+	}
+}
+
+ABCModel::ABCModel(vector<char> ABC) {
+	this->ABC = ABC;
+
+	for (unsigned int i = 0; i < this->ABC.size(); i++)
+	{
+		this->distribution[ABC[i]] = 0;
+	}
+
+	for (unsigned int i = 0; i < this->ABC.size(); i++) {
+		this->bigrams.push_back(vector<int>(33, 0));
 	}
 }
 
@@ -149,4 +162,47 @@ void ABCModel::CalculateIndexOfMatches()
 	}
 
 	this->indexOfMatches = summ;
+}
+
+int ABCModel::CalculateShift(map<char, double> modifiedDistribution)
+{
+	int result = -1;
+	int errors = modifiedDistribution.size();
+	for (unsigned int i = 0; i < modifiedDistribution.size(); i++) {
+		int x = this->CheckShift(modifiedDistribution, i);
+		if (x < errors) {
+			result = i;
+			errors = x;
+		}
+	}
+	return result;
+}
+
+int ABCModel::CheckShift(map<char, double> modifiedDistribution, unsigned int shift)
+{
+	vector<double> distributionV;
+	vector<double> modifiedDistributionV;
+
+	int errors = 0;
+
+	//  остыль дл€ копировани€, поскольку был выбран не правильный тип хранени€ данных.
+	// Ћучше использовать вектора
+
+	map<char, double>::iterator itr; 
+	for (itr = this->distribution.begin(); itr != this->distribution.end(); itr++) {
+		distributionV.push_back(itr->second);
+		modifiedDistributionV.push_back(modifiedDistribution[itr->first]);
+	}
+
+	for (unsigned int i = 0; i < distributionV.size(); i++) {
+		double errorRate = distributionV[i] * 0.15;
+		int x = i + shift;
+
+		if (abs(distributionV[i] - modifiedDistributionV[x % ABC.size()]) > errorRate) {
+			errors++;
+		}
+
+	}
+
+	return errors;
 }

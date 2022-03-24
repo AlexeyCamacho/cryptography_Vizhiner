@@ -24,6 +24,9 @@
     <ClCompile Include="ABCModel.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="DecryptionVizhiner.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -33,6 +36,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="ABCModel.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DecryptionVizhiner.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
