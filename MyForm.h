@@ -823,6 +823,9 @@ private:
 		vector<string> lines = ReadFile_(filename);
 
 		DisplayWords(lines, this->textBox1);
+
+		this->textBox1->Focus(); // Костыли для принудительного запуска валидации
+		this->button1->Focus();
 	}
 
 	System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) { // Открытие файла "пример текста"
@@ -833,6 +836,9 @@ private:
 		vector<string> lines = ReadFile_(filename);
 
 		DisplayWords(lines, this->textBox3);
+
+		this->textBox3->Focus(); // Костыли для принудительного запуска валидации
+		this->button2->Focus();
 	}
 
 	vector<string> ReadFile_(string filename) { // Чтение файла
@@ -874,7 +880,7 @@ private:
 		vector<double> indexes = decriptor->GetIndexesOfMatches();
 
 		int i = 1;
-		double average, MAX = 0;
+		double average = 0, MAX = 0;
 		vector<double>::iterator itr;
 		for (itr = indexes.begin(); itr != indexes.end(); itr++) {
 			chart2->Series[0]->Points->AddXY(i, *itr);
@@ -892,8 +898,8 @@ private:
 			chart2->Series[1]->Points->AddXY(i, average);
 		}
 
-		int keyLength;
-		for (int i = 0; i < indexes.size(); i++) {
+		unsigned int keyLength;
+		for (unsigned int i = 0; i < indexes.size(); i++) {
 			if ((MAX - average) < 0.005) { keyLength = 1; break; }
 			if (indexes[i] > average) { keyLength = i + 1; break; }
 		}
