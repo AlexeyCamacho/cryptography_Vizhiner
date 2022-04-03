@@ -12,7 +12,7 @@ string Vizhiner::encrypt(string text, string key) {
 
 	vector<int> shift = GetPositions(key);
 
-	for (int i = 0; i < text.length(); i++) {
+	for (unsigned int i = 0; i < text.length(); i++) {
 		vector<char>::iterator itr = find(ABC.begin(), ABC.end(), text[i]);
 
 		result += ABC[(distance(ABC.begin(), itr) + shift[i % key.length()]) % ABC.size()];
@@ -28,7 +28,7 @@ string Vizhiner::decrypt(string text, string key) {
 
 	vector<int> shift = GetPositions(key);
 
-	for (int i = 0; i < text.length(); i++) {
+	for (unsigned int i = 0; i < text.length(); i++) {
 		vector<char>::iterator itr = find(ABC.begin(), ABC.end(), text[i]);
 
 		int x = (distance(ABC.begin(), itr) - shift[i % key.length()]);
@@ -43,7 +43,7 @@ string Vizhiner::decrypt(string text, string key) {
 vector<int> Vizhiner::GetPositions(string& text) {
 	vector<int> result;
 
-	for (int i = 0; i < text.length(); i++) {
+	for (unsigned int i = 0; i < text.length(); i++) {
 		vector<char>::iterator itr = find(ABC.begin(), ABC.end(), text[i]);
 		result.push_back(distance(ABC.begin(), itr));
 	}
@@ -54,7 +54,7 @@ vector<int> Vizhiner::GetPositions(string& text) {
 string Vizhiner::validate(string& text) {
 	string result;
 
-	for (int i = 0; i < text.length(); i++) {
+	for (unsigned int i = 0; i < text.length(); i++) {
 		
 		vector<char>::iterator itr = find(ABC.begin(), ABC.end(), text[i]);
 		
@@ -66,7 +66,7 @@ string Vizhiner::validate(string& text) {
 		}
 	}
 
-	for (int i = 0; i < result.length() - 1; i++) { //Поиск пробелов
+	for (unsigned int i = 0; i < result.length() - 1; i++) { //Поиск пробелов
 
 		if (result[i] == ABC[32] && result[i+1] == ABC[32]) {
 			result.erase(i + 1, 1);
